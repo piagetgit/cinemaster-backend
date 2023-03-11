@@ -18,7 +18,6 @@
 		<module>user-service</module>
 		<module>film-service</module>
 <!--		<module>cinemaster-commons</module>-->
-        <module>payment-service</module>
     </modules>
 
 
