@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>user-service</artifactId>
+    <artifactId>payment-service</artifactId>
 
     <properties>
         <java.version>11</java.version>
