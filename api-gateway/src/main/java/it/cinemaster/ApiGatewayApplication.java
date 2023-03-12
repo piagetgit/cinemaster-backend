@@ -7,7 +7,6 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-// @EnableEurekaClient
 @EnableDiscoveryClient
 public class ApiGatewayApplication {
 
@@ -17,4 +16,5 @@ public class ApiGatewayApplication {
 
 	@Autowired
 	private DiscoveryClient discoveryClient;
+
 }

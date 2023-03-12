@@ -14,12 +14,6 @@
     <packaging>pom</packaging>
     <name>cinemaster</name>
 	<description>Cinemaster Project</description>
-	<modules>
-		<module>user-service</module>
-		<module>film-service</module>
-<!--		<module>cinemaster-commons</module>-->
-        <module>payment-service</module>
-    </modules>
 
 
 	<properties>
