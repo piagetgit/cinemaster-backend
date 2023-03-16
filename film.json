@@ -23,24 +23,24 @@
   },
   {
    "id": 0003,
-   "titolo": "",
+   "titolo": "Dog Gone",
    "data_uscita": 01/05/2023,
-   "regista": "",
+   "regista": "Stephen Herek",
    "durata": 88,
    "prezzo": 15,
-   "categoria": "Thriller",
-   "descrizione": "",
-   "foto": ".jpg"
+   "categoria": "Per famiglie",
+   "descrizione": "Quando il suo amato cane scompare, un giovane si imbarca in un'incredibile ricerca con i suoi genitori per trovarlo e dargli un farmaco salvavita.",
+   "foto": "dog_gone.jpg"
   },
   {
    "id": 0004,
-   "titolo": "",
+   "titolo": "True Spirit",
    "data_uscita": 10/08/2023,
-   "regista": "",
+   "regista": "Danny Ruhlmann",
    "durata": 96,
    "prezzo": 15,
-   "categoria": "Drammatico",
-   "descrizione": "",
-   "foto": ".jpg"
+   "categoria": "Azione",
+   "descrizione": "Una tenace adolescente australiana insegue i suoi sogni, e affronta le sue paure, mentre si accinge a diventare la più giovane persona a navigare in solitaria intorno al mondo.",
+   "foto": "true_spirit.jpg"
   }
 ]
