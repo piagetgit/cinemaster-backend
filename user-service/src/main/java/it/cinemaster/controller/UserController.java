@@ -1,4 +1,32 @@
 package it.cinemaster.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import it.cinemaster.component.User;
+import it.cinemaster.component.Login;
+import it.cinemaster.service.UserService;
+import org.springframework.web.servlet.function.EntityResponse;
+
+@RestController
+@RequestMapping("v1/cinemaster")
 public class UserController {
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/profile/{id}")
+    public ResponseEntity<User> getProfile(@PathVariable("id") String email){
+       User u= userService.getProfile(email);
+       return new ResponseEntity<>(u, HttpStatus.FOUND);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<User> createProfile(@RequestBody User utente){
+        return new ResponseEntity<>(userService.newUser(utente), HttpStatus.CREATED);
+    }
+    @PostMapping("/login")
+    public ResponseEntity<User> accessProfile(@RequestBody Login login){
+        return new ResponseEntity<>(userService.logUser(login), HttpStatus.ACCEPTED);
+    }
 }
