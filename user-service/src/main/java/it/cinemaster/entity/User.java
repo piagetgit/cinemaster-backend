@@ -11,7 +11,7 @@ import java.util.Date;
 @Table(name ="user_table")
 public class User {
 
-    @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     //@ApiModelProperty(position = 1)
@@ -19,7 +19,8 @@ public class User {
     private String nome;
     private String cognome;
     private String password;
-    private boolean logged = false;
+    private boolean logged;
+    @Id
     private String email;
     private Date dataNascita;
     private String ruolo;

@@ -1,5 +1,6 @@
 package it.cinemaster.service;
 
+import it.cinemaster.response.ProfileResponse;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,17 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-    public User getProfile(String email){
-        return  userRepository.getById(email);
+    public ProfileResponse getProfile(String email){
+        Optional<User> u = userRepository.getByEmail(email);
+        if(u.isPresent()){
+            ProfileResponse profileResponse = new ProfileResponse();
+            profileResponse.setNome(u.get().getNome());
+            profileResponse.setCognome(u.get().getCognome());
+            profileResponse.setDataNascita(u.get().getDataNascita());
+            profileResponse.setEmail(u.get().getEmail());
+            return profileResponse;
+        }
+        return null;
     }
 
     public User createUser(User user) {

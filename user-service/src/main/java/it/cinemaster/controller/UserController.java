@@ -1,5 +1,6 @@
 package it.cinemaster.controller;
 
+import it.cinemaster.response.ProfileResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,14 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getProfile(@PathVariable("id") String email){
-       User u= userService.getProfile(email);
+    public ResponseEntity<ProfileResponse> getProfile(@PathVariable("id") String email){
+        ProfileResponse u= userService.getProfile(email);
+       if (u==null){
+           return new ResponseEntity<>(u,HttpStatus.NOT_FOUND);
+       }
        return new ResponseEntity<>(u, HttpStatus.FOUND);
+
+
     }
 
     @PostMapping("/register")
