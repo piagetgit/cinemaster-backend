@@ -1,9 +1,20 @@
-package it.cinemaster.component;
+package it.cinemaster.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.util.Date;
-
+@Data
+@Entity
+@NoArgsConstructor
+@Table(name ="user_table")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    //@ApiModelProperty(position = 1)
     private int id;
     private String nome;
     private String cognome;
@@ -13,7 +24,7 @@ public class User {
     private Date dataNascita;
     private String ruolo;
 
-    public User(int id, String nome, String cognome, String password, boolean logged, String email, Date dataNascita, String ruolo){
+    /*public User(int id, String nome, String cognome, String password, boolean logged, String email, Date dataNascita, String ruolo){
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
@@ -39,5 +50,5 @@ public class User {
     public Date getDataNascita() { return dataNascita; }
     public void setDataNascita(Date dataNascita) { this.dataNascita = dataNascita; }
     public String getRuolo() { return ruolo; }
-    public void setRuolo(String ruolo) { this.ruolo = ruolo; }
+    public void setRuolo(String ruolo) { this.ruolo = ruolo; }*/
 }

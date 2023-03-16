@@ -1,4 +1,4 @@
-package it.cinemaster.component;
+package it.cinemaster.entity;
 
 public class Login {
     private String id;

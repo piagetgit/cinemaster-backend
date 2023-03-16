@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import it.cinemaster.component.User;
-import it.cinemaster.component.Login;
+import it.cinemaster.entity.User;
+import it.cinemaster.entity.Login;
 import it.cinemaster.service.UserService;
 
 @RestController
