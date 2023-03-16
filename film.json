@@ -1,0 +1,46 @@
+[
+  {
+   "id": 0001,
+   "titolo": "Die Hart the Movie",
+   "data_uscita": 03/03/2023,
+   "regista": "Eric Appel",
+   "durata": 92,
+   "prezzo": 15,
+   "categoria": "Azione",
+   "descrizione": "Kevin Hart, è impegnato in una missione dove sfida la morte per diventare una star d'azione. E con un piccolo aiuto da parte di John Travolta, Nathalie Emmanuel e Josh Hartnett, potrebbe farcela.",
+   "foto": "die_hart.jpg"
+  },
+  {
+   "id": 0002,
+   "titolo": "Unlocked",
+   "data_uscita": 09/03/2023,
+   "regista": "Kim Tae-joon",
+   "durata": 100,
+   "prezzo": 18,
+   "categoria": "Drammatico",
+   "descrizione": "La vita di una donna viene stravolta dopo che un uomo pericoloso entra in possesso del suo cellulare smarrito e lo usa per seguire ogni sua mossa.",
+   "foto": "unlocked.jpg"
+  },
+  {
+   "id": 0003,
+   "titolo": "",
+   "data_uscita": 01/05/2023,
+   "regista": "",
+   "durata": 88,
+   "prezzo": 15,
+   "categoria": "Thriller",
+   "descrizione": "",
+   "foto": ".jpg"
+  },
+  {
+   "id": 0004,
+   "titolo": "",
+   "data_uscita": 10/08/2023,
+   "regista": "",
+   "durata": 96,
+   "prezzo": 15,
+   "categoria": "Drammatico",
+   "descrizione": "",
+   "foto": ".jpg"
+  }
+]
