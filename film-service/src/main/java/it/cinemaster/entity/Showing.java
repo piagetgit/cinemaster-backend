@@ -1,4 +1,4 @@
-package it.cinemaster.component;
+package it.cinemaster.entity;
 
 import java.time.format.DateTimeFormatter;
 

@@ -1,16 +1,34 @@
-package it.cinemaster.component;
+package it.cinemaster.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
+@Data
+@Entity
+@NoArgsConstructor
+@Table(name ="film")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "idFilm",
+        scope = Film.class)
 public class Film {
-    private int idFilm;
-    private DateTimeFormatter dataOra;
+    @Id
+    private long idFilm;
+    private Date dataOra;
     private String autore;
     private int durata;
     private double prezzo;
     private String categoria;
     private String descrizione;
-    public Film(int idFilm, DateTimeFormatter dataOra, String autore, int durata, double prezzo, String categoria, String descrizione){
+    public Film(int idFilm, Date dataOra, String autore, int durata, double prezzo, String categoria, String descrizione){
         this.idFilm = idFilm;
         this.dataOra = dataOra;
         this.autore = autore;
@@ -19,10 +37,10 @@ public class Film {
         this.categoria = categoria;
         this.descrizione = descrizione;
     }
-    public int getIdFilm(){ return idFilm; }
+    public long getIdFilm(){ return idFilm; }
     public void setIdFilm(int idFilm){ this.idFilm = idFilm; }
-    public DateTimeFormatter getDataOra(){ return dataOra; }
-    public void setDataOra(DateTimeFormatter dataOra){ this.dataOra = dataOra; }
+    public Date getDataOra(){ return dataOra; }
+    public void setDataOra(Date dataOra){ this.dataOra = dataOra; }
     public String getAutore(){ return autore; }
     public void setAutore(String autore){ this.autore = autore; }
     public int getDurata(){ return durata; }
