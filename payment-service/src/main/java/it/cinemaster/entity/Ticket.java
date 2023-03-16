@@ -1,16 +1,16 @@
-package it.cinemaster.component;
+package it.cinemaster.entity;
 
 import java.time.format.DateTimeFormatter;
 
 public class Ticket {
     private int idFilm;
-    private int idUser;
+    private String idUser;
     private int numeroPersone;
     private int numeroRidotti;
     private double prezzoTotale;
     private DateTimeFormatter dataOra;
     private String posti = "";
-    public Ticket(int idFilm, int idUser, int numeroPersone, int numeroRidotti, double prezzoTotale, DateTimeFormatter dataOra, String posti){
+    public Ticket(int idFilm, String idUser, int numeroPersone, int numeroRidotti, double prezzoTotale, DateTimeFormatter dataOra, String posti){
         this.idFilm = idFilm;
         this.idUser = idUser;
         this.numeroPersone = numeroPersone;
@@ -22,8 +22,8 @@ public class Ticket {
 
     public int getIdFilm(){ return idFilm; }
     public void setIdFilm(int idFilm){ this.idFilm = idFilm; }
-    public int getIdUser(){ return idUser; }
-    public void setIdUser(int idUser){ this.idUser = idUser; }
+    public String getIdUser(){ return idUser; }
+    public void setIdUser(String idUser){ this.idUser = idUser; }
     public int getNumeroPersone(){ return numeroPersone; }
     public void setNumeroPersone(int numeroPersone){ this.numeroPersone = numeroPersone; }
     public int getNumeroRidotti(){ return numeroRidotti; }
