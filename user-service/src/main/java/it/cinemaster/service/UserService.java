@@ -1,13 +1,11 @@
 package it.cinemaster.service;
 
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import it.cinemaster.component.Login;
 import it.cinemaster.component.User;
 import it.cinemaster.repository.UserRepository;
 
-import java.io.FileReader;
 import java.util.Optional;
 
 @Service
@@ -19,8 +17,7 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        User u = userRepository.save(user);
-        return  u;
+        return  userRepository.save(user);
     }
 
     public boolean logUser(Login login) {
@@ -31,7 +28,6 @@ public class UserService {
                 return true;
             }
         }
-
         return false;
     }
 }

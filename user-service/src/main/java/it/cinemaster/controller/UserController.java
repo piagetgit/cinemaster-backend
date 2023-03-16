@@ -22,7 +22,6 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<User> createProfile(@RequestBody User user){
-        User u =userService.createUser(user);
         return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
     }
     @PostMapping("/login")
