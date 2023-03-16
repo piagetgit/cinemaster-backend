@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import it.cinemaster.component.User;
 import it.cinemaster.component.Login;
 import it.cinemaster.service.UserService;
-import org.springframework.web.servlet.function.EntityResponse;
 
 @RestController
 @RequestMapping("v1/cinemaster")
@@ -22,8 +21,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> createProfile(@RequestBody User utente){
-        return new ResponseEntity<>(userService.newUser(utente), HttpStatus.CREATED);
+    public ResponseEntity<User> createProfile(@RequestBody User user){
+        return new ResponseEntity<>(userService.newUser(user), HttpStatus.CREATED);
     }
     @PostMapping("/login")
     public ResponseEntity<User> accessProfile(@RequestBody Login login){

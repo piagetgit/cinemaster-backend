@@ -1,18 +1,10 @@
 package it.cinemaster.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import it.cinemaster.component.User;
-
-import java.util.Date;
+import org.springframework.data.repository.CrudRepository;
 
 @Repository
-public class UserRepository extends User{
-    public UserRepository(int id, String nome, String cognome, String password, boolean logged, String email, Date dataNascita, String ruolo) {
-        super(id, nome, cognome, password, logged, email, dataNascita, ruolo);
-    }
-
-    @Override
-    public String getEmail() {
-        return super.getEmail();
-    }
+public interface UserRepository extends JpaRepository<User, String> {
 }
