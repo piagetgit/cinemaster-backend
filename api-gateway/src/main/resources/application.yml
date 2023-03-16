@@ -8,15 +8,15 @@ spring:
         - id: payment-service
           uri: lb://payment-service
           predicates:
-            - Path=/api/payment**
+            - Path=/api/v1/cinemaster/payment/**
         - id: film-service
           uri: lb://film-service
           predicates:
-            - Path=/v1/cinemaster/film**
+            - Path=/api/v1/cinemaster/film/**
         - id: user-service
-          uri: lb://user-service
+          uri: lb://user-servicde
           predicates:
-            - Path=/api/user**
+            - Path=/api/v1/cinemaster/user/**
     kubernetes:
       enabled: false
   application:

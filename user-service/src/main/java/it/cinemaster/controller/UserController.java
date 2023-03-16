@@ -10,7 +10,7 @@ import it.cinemaster.entity.Login;
 import it.cinemaster.service.UserService;
 
 @RestController
-@RequestMapping("v1/cinemaster/user")
+@RequestMapping("api/v1/cinemaster/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -26,7 +26,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/register")
+    @PostMapping("/signup")
     public ResponseEntity<User> createProfile(@RequestBody User user){
         return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
     }
