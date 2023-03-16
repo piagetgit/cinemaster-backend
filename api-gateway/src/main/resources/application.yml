@@ -12,7 +12,7 @@ spring:
         - id: film-service
           uri: lb://film-service
           predicates:
-            - Path=/api/film**
+            - Path=/v1/cinemaster/film**
         - id: user-service
           uri: lb://user-service
           predicates:

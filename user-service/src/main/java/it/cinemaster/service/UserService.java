@@ -8,23 +8,30 @@ import it.cinemaster.component.User;
 import it.cinemaster.repository.UserRepository;
 
 import java.io.FileReader;
+import java.util.Optional;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
     public User getProfile(String email){
-        JSONParser parser = new JSONParser();
-        Object res = parser.parse(new FileReader("C:\\Users\\pietr\\Desktop\\Esame Prog-DV\\cinemaster-backend\\users.json"));
-        JSONObject jsonObject = (JSONObject) res;
-        JSONArray listaUtenti = JSONArray
+        return  userRepository.getById(email);
     }
 
-    public void newUser(User utente) {
-        userRepository.save(utente);
+    public User createUser(User user) {
+        User u = userRepository.save(user);
+        return  u;
     }
 
-    public void logUser(Login login) {
-        if(userRepository.fin)
+    public boolean logUser(Login login) {
+        Optional<User> u = userRepository.findById(login.getId());
+
+        if (u.isPresent()){
+            if(u.get().getPassword().equals(login.getLogPassword())){
+                return true;
+            }
+        }
+
+        return false;
     }
 }

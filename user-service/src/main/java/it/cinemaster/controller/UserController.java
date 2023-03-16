@@ -9,12 +9,12 @@ import it.cinemaster.component.Login;
 import it.cinemaster.service.UserService;
 
 @RestController
-@RequestMapping("v1/cinemaster")
+@RequestMapping("v1/cinemaster/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/profile/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getProfile(@PathVariable("id") String email){
        User u= userService.getProfile(email);
        return new ResponseEntity<>(u, HttpStatus.FOUND);
@@ -22,10 +22,11 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<User> createProfile(@RequestBody User user){
-        return new ResponseEntity<>(userService.newUser(user), HttpStatus.CREATED);
+        User u =userService.createUser(user);
+        return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
     }
     @PostMapping("/login")
-    public ResponseEntity<User> accessProfile(@RequestBody Login login){
+    public ResponseEntity<Boolean> accessProfile(@RequestBody Login login){
         return new ResponseEntity<>(userService.logUser(login), HttpStatus.ACCEPTED);
     }
 }
