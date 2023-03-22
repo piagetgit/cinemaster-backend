@@ -2,6 +2,7 @@ cd cinemaster-commons
 ./mvnw clean install &
 cd ../api-gateway
 ./mvnw clean install &
+docker build -t api-gateway .
 cd ../service-discovery-server
 ./mvnw clean install &
 docker build -t service-discovery-server .
