@@ -16,7 +16,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     public ProfileResponse getProfile(String email){
-        Optional<User> u = userRepository.getByEmail(email);
+        Optional<User> u = userRepository.findByEmail(email);
         if(u.isPresent()){
             ProfileResponse profileResponse = new ProfileResponse();
             profileResponse.setNome(u.get().getNome());
@@ -34,7 +34,7 @@ public class UserService {
     }
 
     public boolean logUser(Login login) {
-        Optional<User> u = userRepository.findById(login.getId());
+        Optional<User> u = userRepository.findByEmail(login.getId());
 
         if (u.isPresent()){
             if(u.get().getPassword().equals(login.getLogPassword())){

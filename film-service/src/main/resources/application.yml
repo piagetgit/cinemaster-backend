@@ -5,24 +5,16 @@ spring:
     url: jdbc:postgresql://localhost:5432/cinemaster
     username: "admin"
     password: "admin"
- # main:
- #   web-application-type: reactive
-#  jpa:
-#    properties:
-#      hibernate:
-#        jdbc:
-#          lob:
-#            non_contextual_creation=true:
+    initialization-mode: always
     hibernate:
       ddl-auto: update
       generate-dll: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-javax:
-  persistence:
-    schema-generation:
-      database:
-        action: none
+    jpa:
+      hibernate:
+        ddl-auto: none
+
 server:
   port: 8082
 eureka:

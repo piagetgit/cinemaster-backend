@@ -32,6 +32,7 @@ public class UserController {
     }
     @PostMapping("/login")
     public ResponseEntity<Boolean> accessProfile(@RequestBody Login login){
+        System.out.println("Begin login: "+ login.toString());
         return new ResponseEntity<>(userService.logUser(login), HttpStatus.ACCEPTED);
     }
 }

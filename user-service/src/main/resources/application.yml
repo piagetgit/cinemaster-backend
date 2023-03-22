@@ -7,21 +7,14 @@ spring:
     password: "admin"
     initialization-mode: always
   hibernate:
-    ddl-auto: create
+    ddl-auto: update
     generate-dll: true
   database-platform: org.hibernate.dialect.PostgreSQLDialect
   show-sql: true
   jpa:
     hibernate:
       ddl-auto: none
-  #  jpa:
-  #    properties:
-  #      hibernate:
-  #        jdbc:
-  #          lob:
-  #            non_contextual_creation=true:
- # main:
- #   web-application-type: reactive
+
 server:
   port: 8083
 eureka:

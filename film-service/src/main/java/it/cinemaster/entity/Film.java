@@ -25,9 +25,9 @@ public class Film {
     @ApiModelProperty(position = 1)
     private Long id;
     @Column
-    private Date dataOra;
+    private Date dataUscita;
     @Column
-    private String autore;
+    private String regista;
     @Column
     private int durata;
     @Column

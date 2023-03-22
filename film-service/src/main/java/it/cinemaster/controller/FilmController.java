@@ -8,14 +8,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController()
-@RequestMapping("v1/cinemaster")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("api/v1/cinemaster")
 public class FilmController {
     @Autowired
     private FilmService filmService;
 
-    @PostMapping(value = "/film")
+    @PostMapping(value = "/")
     public ResponseEntity<String> createFilm(@RequestBody FilmRequest filmRequest){
         Film f = new Film();
         f.setId(filmRequest.getId());
@@ -23,6 +24,11 @@ public class FilmController {
         filmService.createFilm(f);
         return new ResponseEntity<>("Created",HttpStatus.CREATED);
     }
+    @GetMapping(value = "/films")
+    public ResponseEntity<List<Film>> getAllFilms(){
+        return new ResponseEntity<>(filmService.getAllFilm(),HttpStatus.CREATED);
+    }
+
 
     @GetMapping(value = "/film")
     public ResponseEntity<String> getFilm(){

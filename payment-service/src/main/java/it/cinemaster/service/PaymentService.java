@@ -14,6 +14,7 @@ public class PaymentService {
     private PaymentRepository paymentRepository;
     public Ticket getAmount(String idLogin) {
         Optional<Ticket> l = paymentRepository.getByIdUser(idLogin);
+        return null;
     }
 
     public Ticket createTicket(Ticket ticket) {
