@@ -33,15 +33,19 @@ public class UserService {
         return  u;
     }
 
-    public boolean logUser(Login login) {
+    public ProfileResponse logUser(Login login) {
         Optional<User> u = userRepository.findByEmail(login.getId());
-
-        if (u.isPresent()){
+        ProfileResponse profileResponse = new ProfileResponse();
+        if(u.isPresent()){
             if(u.get().getPassword().equals(login.getLogPassword())){
-                return true;
+                profileResponse.setNome(u.get().getNome());
+                profileResponse.setCognome(u.get().getCognome());
+                profileResponse.setDataNascita(u.get().getDataNascita());
+                profileResponse.setEmail(u.get().getEmail());
+                return profileResponse;
             }
+            return null;
         }
-
-        return false;
+        return null;
     }
 }

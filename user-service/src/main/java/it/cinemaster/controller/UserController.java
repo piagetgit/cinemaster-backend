@@ -31,7 +31,7 @@ public class UserController {
         return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
     }
     @PostMapping("/login")
-    public ResponseEntity<Boolean> accessProfile(@RequestBody Login login){
+    public ResponseEntity<ProfileResponse> accessProfile(@RequestBody Login login){
         System.out.println("Begin login: "+ login.toString());
         return new ResponseEntity<>(userService.logUser(login), HttpStatus.ACCEPTED);
     }
