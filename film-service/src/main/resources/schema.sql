@@ -11,9 +11,9 @@ CREATE TABLE if not exists films (
     descrizione varchar(1023),
     img varchar(255)
 );
-CREATE TABLE if not exists film_images (
-    id SERIAL PRIMARY KEY,
-    img_name varchar(255),
-    img_data bytea
-);
+--CREATE TABLE if not exists film_images (
+--    id SERIAL PRIMARY KEY,
+--    img_name varchar(255),
+--    img_data bytea
+--);
 

@@ -23,13 +23,13 @@ import java.util.List;
 @EntityScan("it.cinemaster.entity")
 @EnableJpaRepositories("it.cinemaster.repository")
 @ComponentScan(basePackages = "it.cinemaster")
-public class CinemasterApplication implements CommandLineRunner {
+public class CinemasterApplication /*implements CommandLineRunner*/ {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CinemasterApplication.class, args);
 	}
 
-	@Autowired
+	/*@Autowired
 	FilmImageRepository filmImageRepository;
 	@Override
 	public void run(String... args) {
@@ -55,5 +55,5 @@ public class CinemasterApplication implements CommandLineRunner {
 			throw new RuntimeException(e);
 		}
 
-	}
+	}*/
 }
