@@ -1,16 +1,25 @@
 package it.cinemaster.entity;
 
-import java.time.format.DateTimeFormatter;
+import lombok.Data;
 
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+@Table(name = "tickets")
+@Data
 public class Ticket {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private int idFilm;
     private String idUser;
     private int numeroPersone;
     private int numeroRidotti;
     private double prezzoTotale;
-    private DateTimeFormatter dataOra;
+    private Date dataOra;
     private String posti = "";
-    public Ticket(int idFilm, String idUser, int numeroPersone, int numeroRidotti, double prezzoTotale, DateTimeFormatter dataOra, String posti){
+    public Ticket(int idFilm, String idUser, int numeroPersone, int numeroRidotti, double prezzoTotale, Date dataOra, String posti){
         this.idFilm = idFilm;
         this.idUser = idUser;
         this.numeroPersone = numeroPersone;
@@ -20,7 +29,7 @@ public class Ticket {
         this.posti = posti;
     }
 
-    public int getIdFilm(){ return idFilm; }
+    /*public int getIdFilm(){ return idFilm; }
     public void setIdFilm(int idFilm){ this.idFilm = idFilm; }
     public String getIdUser(){ return idUser; }
     public void setIdUser(String idUser){ this.idUser = idUser; }
@@ -33,5 +42,5 @@ public class Ticket {
     public DateTimeFormatter getDataOra(){ return dataOra; }
     public void setDataOra(DateTimeFormatter dataOra){ this.dataOra = dataOra; }
     public String getPosti(){ return posti; }
-    public void setPosti(String posti){ this.posti = posti; }
+    public void setPosti(String posti){ this.posti = posti; }*/
 }
