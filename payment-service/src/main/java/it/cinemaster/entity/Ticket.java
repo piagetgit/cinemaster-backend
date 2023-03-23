@@ -18,7 +18,7 @@ public class Ticket {
     private int numeroRidotti;
     private double prezzoTotale;
     private Date dataOra;
-    private String posti = "";
+    private String posti;
     public Ticket(int idFilm, String idUser, int numeroPersone, int numeroRidotti, double prezzoTotale, Date dataOra, String posti){
         this.idFilm = idFilm;
         this.idUser = idUser;
