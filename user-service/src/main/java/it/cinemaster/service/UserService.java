@@ -23,12 +23,14 @@ public class UserService {
             profileResponse.setCognome(u.get().getCognome());
             profileResponse.setDataNascita(u.get().getDataNascita());
             profileResponse.setEmail(u.get().getEmail());
+            profileResponse.setId(u.get().getId());
             return profileResponse;
         }
         return null;
     }
 
     public User createUser(User user) {
+        if(this.getProfile(user.getEmail()) !=null)  return  null;
         User u = userRepository.save(user);
         return  u;
     }
@@ -42,6 +44,7 @@ public class UserService {
                 profileResponse.setCognome(u.get().getCognome());
                 profileResponse.setDataNascita(u.get().getDataNascita());
                 profileResponse.setEmail(u.get().getEmail());
+                profileResponse.setId(u.get().getId());
                 return profileResponse;
             }
             return null;

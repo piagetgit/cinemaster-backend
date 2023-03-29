@@ -1,5 +1,6 @@
 package it.cinemaster.controller;
 
+import it.cinemaster.entity.SignupResponse;
 import it.cinemaster.response.ProfileResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,17 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> createProfile(@RequestBody User user){
-        return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
+    public ResponseEntity<SignupResponse> createProfile(@RequestBody User u){
+        User user = userService.createUser(u);
+        SignupResponse res = new SignupResponse();
+        if(user==null){
+            res.setCode("4004");
+            res.setMessage("Email Already exists");
+            return new ResponseEntity<>(res, HttpStatus.FORBIDDEN);
+        }
+        res.setCode("2002");
+        res.setMessage("SUCCESS");
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
     @PostMapping("/login")
     public ResponseEntity<ProfileResponse> accessProfile(@RequestBody Login login){

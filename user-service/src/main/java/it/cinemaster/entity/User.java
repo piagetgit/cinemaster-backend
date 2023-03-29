@@ -11,14 +11,17 @@ import java.util.Date;
 @Table(name ="user_table")
 public class User {
 
-    @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
+    @Id
     private Long id;
     private String nome;
     private String cognome;
+
     private String password;
     private boolean logged;
+
     private String email;
     private Date dataNascita;
     private String ruolo;

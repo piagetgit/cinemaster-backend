@@ -13,7 +13,7 @@ import java.util.Date;
 public class ProfileResponse {
     private  String nome;
     private String cognome;
-    private int id;
+    private Long id;
 
     private Date dataNascita;
     private String email;
