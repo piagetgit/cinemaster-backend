@@ -17,7 +17,7 @@ public class Ticket {
     private int filmId;
 
     private boolean pagato;
-    private String userId;
+    private Long userId;
     private int numeroPersone;
     private int numeroRidotti;
     private double prezzoTotale;

@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface PaymentRepository extends JpaRepository<Ticket, Long>{
     //Optional<Ticket> getByIdUser(String idUser);
-    Optional<List<Ticket>> findByUserId(String userId);
+    Optional<List<Ticket>> findByUserId(Long userId);
 }
