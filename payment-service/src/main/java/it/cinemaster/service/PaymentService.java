@@ -22,7 +22,7 @@ public class PaymentService {
         return paymentRepository.save(ticket);
     }
 
-    public List<Ticket> getTicketByUserId(Long userId){
+    public List<Ticket> getTicketByUserId(String userId){
         Optional<List<Ticket>> tickets=paymentRepository.findByUserId(userId);
 
         if(tickets.isPresent()){

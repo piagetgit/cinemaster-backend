@@ -26,7 +26,7 @@ public class PaymentController {
     }
 
     @GetMapping("/tickets/{userId}")
-    public ResponseEntity<List<Ticket>> getTicketsByUser(@PathVariable("userId") long userId){
+    public ResponseEntity<List<Ticket>> getTicketsByUser(@PathVariable("userId") String userId){
         List<Ticket> res = paymentService.getTicketByUserId(userId);
         if(res==null){
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
