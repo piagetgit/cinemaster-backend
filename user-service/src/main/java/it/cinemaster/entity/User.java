@@ -10,8 +10,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name ="user_table")
 public class User {
-
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     @Id
