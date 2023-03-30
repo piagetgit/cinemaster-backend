@@ -20,13 +20,15 @@ public class PaymentController {
         Ticket t = paymentService.getAmount(idLogin);
         return new ResponseEntity<>(t, HttpStatus.FOUND);
     }*/
-    @PostMapping("/buy")
+    @PostMapping("ticket/buy")
     public ResponseEntity<Ticket> buyTicket(@RequestBody Ticket ticket){
+        System.out.println("Begin buyTicket Body:"+ticket);
         return new ResponseEntity<>(paymentService.createTicket(ticket), HttpStatus.CREATED);
     }
 
     @GetMapping("/tickets/{userId}")
     public ResponseEntity<List<Ticket>> getTicketsByUser(@PathVariable("userId") Long userId){
+        System.out.println("Begin getTicketsByUser userId:"+userId);
         List<Ticket> res = paymentService.getTicketByUserId(userId);
         if(res==null){
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
