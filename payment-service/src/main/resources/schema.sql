@@ -1,6 +1,6 @@
 DROP TABLE if exists tickets;
 CREATE TABLE tickets (
-    id SERIAL,
+    id SERIAL PRIMARY KEY,
     film_id INT,
     user_id INT,
     numero_persone INT,
