@@ -21,7 +21,6 @@
 		<module>film-service</module>
 		<module>api-gateway</module>
 		<module>service-discovery-server</module>
-		<module>cinemaster-commons</module>
 	</modules>
 
 	<properties>

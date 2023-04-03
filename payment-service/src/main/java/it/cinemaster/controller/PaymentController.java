@@ -12,14 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/cinemaster/payment")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PaymentController {
     @Autowired
     private PaymentService paymentService;
-    /*@GetMapping("/{id}")
-    public ResponseEntity<Ticket> getTicket(@PathVariable("id") String idLogin){
-        Ticket t = paymentService.getAmount(idLogin);
-        return new ResponseEntity<>(t, HttpStatus.FOUND);
-    }*/
     @PostMapping("ticket/buy")
     public ResponseEntity<Ticket> buyTicket(@RequestBody Ticket ticket){
         System.out.println("Begin buyTicket Body:"+ticket);
