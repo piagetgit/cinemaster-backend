@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/cinemaster/payment")
-@CrossOrigin(origins = "http://localhost:4200")
 public class PaymentController {
     @Autowired
     private PaymentService paymentService;
