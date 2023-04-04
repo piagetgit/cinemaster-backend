@@ -1,6 +1,8 @@
 spring:
   cloud:
     gateway:
+      globalcors:
+        add-to-simple-url-handler-mapping: true
       discovery:
         locator:
           enabled: true
@@ -8,21 +10,19 @@ spring:
         - id: payment-service
           uri: lb://payment-service
           predicates:
-            - Path=/api/payment**
+            - Path=/api/v1/cinemaster/payment/**
         - id: film-service
           uri: lb://film-service
           predicates:
-            - Path=/api/film**
+            - Path=/api/v1/cinemaster/films**
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/api/user**
+            - Path=/api/v1/cinemaster/user/**
     kubernetes:
       enabled: false
   application:
     name: api-gateway
- # main:
- #   web-application-type: reactive
 server:
   port: 8080
 eureka:

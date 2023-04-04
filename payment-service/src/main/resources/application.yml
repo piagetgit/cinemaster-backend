@@ -1,17 +1,23 @@
 spring:
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
   application:
     name: payment-service
-  # main:
-  #   web-application-type: reactive
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cinemaster
+    username: "admin"
+    password: "admin"
+    initialization-mode: always
+    hibernate:
+      ddl-auto: update
+      generate-dll: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    jpa:
+      hibernate:
+        ddl-auto: none
+
 server:
   port: 8081
 eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
-

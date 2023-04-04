@@ -1,4 +1,8 @@
-version: "3"
+version: '3'
+
+networks:
+  cinemaster_net:
+    driver: bridge
 services:
   service-discovery-server:
     container_name: service-discovery-server
@@ -6,7 +10,7 @@ services:
     ports:
       - "8761:8761"
     networks:
-      - opnet
+      - cinemaster_net
   api-gateway:
     container_name: api-gateway
     image: api-gateway:latest
@@ -17,13 +21,18 @@ services:
     depends_on:
       - service-discovery-server
     networks:
-      - opnet
+      - cinemaster_net
   payment-service:
     container_name: payment-service
     image: payment-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - eureka.client.serviceUrl.defaultZone=http://service-discovery-server:8761/eureka/
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - DB_SERVER=cinemaster-postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://cinemaster-postgres:5432/cinemaster
     ports:
       - "8081:8081"
     deploy:
@@ -31,14 +40,21 @@ services:
         condition: on-failure
     depends_on:
       - service-discovery-server
+      - api-gateway
+      - cinemaster-postgres
     networks:
-      - opnet
+      - cinemaster_net
   film-service:
     container_name: film-service
     image: film-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - eureka.client.serviceUrl.defaultZone=http://service-discovery-server:8761/eureka/
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - DB_SERVER=cinemaster-postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://cinemaster-postgres:5432/cinemaster
     ports:
       - "8082:8082"
     deploy:
@@ -46,24 +62,52 @@ services:
         condition: on-failure
     depends_on:
       - service-discovery-server
+      - api-gateway
+      - cinemaster-postgres
     networks:
-      - opnet
+      - cinemaster_net
   user-service:
     container_name: user-service
     image: user-service:latest
+    ports:
+      - "8083:8083"
+    networks:
+      - cinemaster_net
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - eureka.client.serviceUrl.defaultZone=http://service-discovery-server:8761/eureka/
-    ports:
-      - "8083:8083"
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - DB_SERVER=cinemaster-postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://cinemaster-postgres:5432/cinemaster
+
+    links:
+      - cinemaster-postgres
     deploy:
       restart_policy:
         condition: on-failure
     depends_on:
       - service-discovery-server
-    networks:
-      - opnet
+      - api-gateway
+      - cinemaster-postgres
 
-networks:
-  opnet:
-    driver: bridge
+  cinemaster-postgres:
+    image: "postgres:9.6-alpine"
+    container_name: cinemaster-postgres
+    volumes:
+      - cinemaster-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - cinemaster_net
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://cinemaster-postgres:5432/cinemaster
+      - POSTGRES_DB=cinemaster
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+
+
+volumes:
+  cinemaster-data:
