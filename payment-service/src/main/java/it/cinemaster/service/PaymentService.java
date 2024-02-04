@@ -13,11 +13,6 @@ import java.util.Optional;
 public class PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
-    /*public Ticket getAmount(String idLogin) {
-        Optional<Ticket> l = paymentRepository.getByIdUser(idLogin);
-        return null;
-    }*/
-
     public Ticket createTicket(Ticket ticket) {
         return paymentRepository.save(ticket);
     }
