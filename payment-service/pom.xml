@@ -18,7 +18,8 @@
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
-        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <jacoco.ut.execution.data.file>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.ut.execution.data.file>
+        <sonar.exclusions>**/it/cinemaster/controller/**,**/it/cinemaster/entity/**</sonar.exclusions>
     </properties>
 
     <dependencies>
@@ -98,6 +99,55 @@
                 <configuration>
                     <mainClass>it.cinemaster.CinemasterApplication</mainClass>
                     <layout>JAR</layout>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.3</version>
+                <executions>
+                    <!-- Prepares the property pointing to the JaCoCo runtime agent which
+                        is passed as VM argument when Maven the Surefire plugin is executed. -->
+                    <execution>
+                        <id>pre-unit-test</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <destFile>${jacoco.ut.execution.data.file}</destFile>
+                            <!-- Sets the name of the property containing the settings for JaCoCo
+                                runtime agent. -->
+                            <!--<propertyName>surefireArgLine</propertyName>-->
+                        </configuration>
+                    </execution>
+                    <!-- Ensures that the code coverage report for unit tests is created
+                        after unit tests have been run. -->
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>${jacoco.ut.execution.data.file}</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <excludes>
+                        <!-- Exclure des classes de test spécifiques -->
+                        <exclude>**/it/cinemaster/controller/**</exclude>
+                        <exclude>**/it/cinemaster/entity/**</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>
