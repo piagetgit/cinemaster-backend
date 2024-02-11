@@ -1,0 +1,81 @@
+version: '3'
+
+networks:
+  cinemaster_net:
+    driver: bridge
+services:
+  prometheus:
+    image: prometheus-config
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - cinemaster_net
+    volumes:
+      - /Volumes/1TB_Docker/prometheus:/prometheus
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - cinemaster_net
+    volumes:
+      - /Volumes/1TB_Docker/grafana:/var/lib/grafana
+  jenkins:
+    image: jenkins/jenkins:2.426.3-jdk11
+    container_name: jenkins
+    ports:
+      - "8084:8080"
+    networks:
+      - cinemaster_net
+    volumes:
+      - /Volumes/1TB_Docker/jenkins:/var/jenkins_home
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+    networks:
+      - cinemaster_net
+    volumes:
+      - /Volumes/1TB_Docker/sonarqube/data:/opt/sonarqube/data
+  payment-service:
+    container_name: payment-service
+    image: payment-service:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - DB_SERVER=cinemaster-postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://cinemaster-postgres:5432/cinemaster
+      - MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE=*
+      - MANAGEMENT_ENDPOINT_METRICS_ENABLED=true
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+    ports:
+      - "8081:8081"
+    deploy:
+      restart_policy:
+        condition: on-failure
+    networks:
+      - cinemaster_net
+    depends_on:
+      - cinemaster-postgres
+  cinemaster-postgres:
+    image: "postgres:9.6-alpine"
+    container_name: cinemaster-postgres
+    volumes:
+      - cinemaster-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - cinemaster_net
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://cinemaster-postgres:5432/cinemaster
+      - POSTGRES_DB=cinemaster
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+volumes:
+  cinemaster-data:
