@@ -40,6 +40,15 @@ services:
       - cinemaster_net
     volumes:
       - /Volumes/1TB_Docker/sonarqube/data:/opt/sonarqube/data
+  artifactory:
+    image: docker.bintray.io/jfrog/artifactory-pro:latest
+    container_name: artifactory
+    ports:
+      - "8082:8082"
+    networks:
+      - cinemaster_net
+    volumes:
+      - /Volumes/1TB_Docker/artifactory/var/:/var/opt/jfrog/artifactory
   payment-service:
     container_name: payment-service
     image: payment-service:latest
