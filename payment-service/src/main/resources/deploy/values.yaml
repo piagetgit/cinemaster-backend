@@ -1,0 +1,25 @@
+# values.yaml
+
+# Configuration générale
+name: payment-service
+namespace: default
+replicaCount: 1
+
+# Configuration du service
+service:
+  enabled: true
+  type: ClusterIP
+  port: 80
+# Configuration des ressources
+resources:
+  limits:
+    cpu: 0.5
+    memory: 512Mi
+  requests:
+    cpu: 0.2
+    memory: 256Mi
+
+# Configuration des secrets
+secrets:
+  api_key: my-secret-api-key
+  db_password: my-secret-db-password

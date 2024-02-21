@@ -13,6 +13,20 @@ services:
       - cinemaster_net
     volumes:
       - /Volumes/1TB_Docker/prometheus:/prometheus
+  chartmuseum:
+    image: ghcr.io/helm/chartmuseum:v0.16.1
+    container_name: chartmuseum
+    ports:
+      - "8086:8080"
+    networks:
+      - cinemaster_net
+    volumes:
+      - /Volumes/1TB_Docker/chartmuseum/charts:/charts
+    environment:
+      - DEBUG=1
+      - STORAGE=local
+      - STORAGE_LOCAL_ROOTDIR=/charts
+
   grafana:
     image: grafana/grafana
     container_name: grafana

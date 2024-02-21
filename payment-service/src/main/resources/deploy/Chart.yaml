@@ -1,0 +1,12 @@
+# Chart.yaml
+
+apiVersion: v2
+name: payment-service
+description: Une description concise de votre application
+version: 0.1.0
+appVersion: 1.0.0
+
+maintainers:
+  - name: Votre Nom
+    email: votre@email.com
+

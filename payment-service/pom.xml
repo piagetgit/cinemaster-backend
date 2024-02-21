@@ -18,6 +18,7 @@
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <chartURL>chartmuseum:8086/api/charts</chartURL>
         <jacoco.ut.execution.data.file>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.ut.execution.data.file>
         <sonar.exclusions>**/it/cinemaster/controller/**,**/it/cinemaster/entity/**</sonar.exclusions>
     </properties>
@@ -172,6 +173,38 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
+            </plugin>
+            <plugin>
+                <groupId>io.kokuwa.maven</groupId>
+                <artifactId>helm-maven-plugin</artifactId>
+                <version>6.13.0</version>
+                <executions>
+                    <execution>
+                        <id>helm-deploy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                            <goal>upload</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <chartDirectory>${project.basedir}/src/main/resources/deploy</chartDirectory>
+                    <chartVersion>${project.version}</chartVersion>
+                    <useLocalHelmBinary>true</useLocalHelmBinary>
+                    <autoDetectLocalHelmBinary>false</autoDetectLocalHelmBinary>
+                    <helmExecutableDirectory>/opt/homebrew/Cellar/helm/3.14.1/bin</helmExecutableDirectory>
+                    <uploadRepoStable>
+                        <name>stable-repo</name>
+                        <url>${chartURL}</url>
+                        <type>CHARTMUSEUM</type>
+                    </uploadRepoStable>
+                    <uploadRepoSnapshot>
+                        <name>snapshot-repo</name>
+                        <url>${chartURL}</url>
+                        <type>CHARTMUSEUM</type>
+                    </uploadRepoSnapshot>
+                </configuration>
             </plugin>
         </plugins>
     </build>
